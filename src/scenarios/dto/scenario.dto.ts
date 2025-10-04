@@ -18,7 +18,7 @@ export class CreateScenarioDto {
   @IsOptional()
   description?: string;
 
-  @ApiProperty({ description: 'Material configuration', type: 'object' })
+  @ApiProperty({ description: 'Material configuration', type: 'object', additionalProperties: true })
   @IsObject()
   material: {
     type: string;
@@ -26,7 +26,7 @@ export class CreateScenarioDto {
     properties: Record<string, any>;
   };
 
-  @ApiProperty({ description: 'Production route configuration', type: 'object' })
+  @ApiProperty({ description: 'Production route configuration', type: 'object', additionalProperties: true })
   @IsObject()
   route: {
     process: string;
@@ -34,14 +34,14 @@ export class CreateScenarioDto {
     efficiency: number;
   };
 
-  @ApiProperty({ description: 'Energy configuration', type: 'object' })
+  @ApiProperty({ description: 'Energy configuration', type: 'object', additionalProperties: true })
   @IsObject()
   energy: {
     sources: Array<{ type: string; percentage: number; carbonIntensity: number }>;
     renewable: number;
   };
 
-  @ApiProperty({ description: 'Transportation configuration', type: 'object' })
+  @ApiProperty({ description: 'Transportation configuration', type: 'object', additionalProperties: true })
   @IsObject()
   transport: {
     distance: number;
@@ -49,7 +49,7 @@ export class CreateScenarioDto {
     carbonIntensity: number;
   };
 
-  @ApiProperty({ description: 'End of life configuration', type: 'object' })
+  @ApiProperty({ description: 'End of life configuration', type: 'object', additionalProperties: true })
   @IsObject()
   endOfLife: {
     recyclingRate: number;

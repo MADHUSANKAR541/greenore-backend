@@ -1,13 +1,20 @@
-import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common';
-import { ApiTags, ApiOperation } from '@nestjs/swagger';
+import { Controller, Get, Post, Put, Delete, Body, Param, UseGuards } from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiBearerAuth, ApiResponse, ApiParam } from '@nestjs/swagger';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { ProjectsService } from './projects.service';
+import { CreateProjectDto, UpdateProjectDto, Project } from './projects.service';
 
 @ApiTags('projects')
 @Controller('projects')
+@UseGuards(JwtAuthGuard)
+@ApiBearerAuth()
 export class ProjectsController {
+  constructor(private readonly projectsService: ProjectsService) {}
   @Get()
   @ApiOperation({ summary: 'Get all projects' })
-  async findAll() {
-    return { message: 'Projects endpoint - to be implemented' };
+  @ApiResponse({ status: 200, description: 'List of projects' })
+  async findAll(): Promise<Project[]> {
+    return this.projectsService.getAllProjects();
   }
 
   @Post()

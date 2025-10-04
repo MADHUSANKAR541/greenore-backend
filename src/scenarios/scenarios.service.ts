@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectQueue } from '@nestjs/bull';
-import { Queue } from 'bull';
+import type { Queue } from 'bull';
 import { CreateScenarioDto, UpdateScenarioDto, ScenarioResponseDto, ScenarioStatus } from './dto/scenario.dto';
 
 @Injectable()

@@ -1,8 +1,11 @@
-import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common';
-import { ApiTags, ApiOperation } from '@nestjs/swagger';
+import { Controller, Get, Post, Put, Delete, Body, Param, UseGuards } from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @ApiTags('factors')
 @Controller('factors')
+@UseGuards(JwtAuthGuard)
+@ApiBearerAuth()
 export class FactorsController {
   @Get()
   @ApiOperation({ summary: 'Get all factors' })

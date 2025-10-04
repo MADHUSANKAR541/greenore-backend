@@ -1,10 +1,13 @@
-import { Controller, Get, Post, Put, Delete, Body, Param, Query } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiQuery } from '@nestjs/swagger';
+import { Controller, Get, Post, Put, Delete, Body, Param, Query, UseGuards } from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiQuery, ApiBearerAuth } from '@nestjs/swagger';
 import { ScenariosService } from './scenarios.service';
 import { CreateScenarioDto, UpdateScenarioDto, ScenarioResponseDto } from './dto/scenario.dto';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @ApiTags('scenarios')
 @Controller('scenarios')
+@UseGuards(JwtAuthGuard)
+@ApiBearerAuth()
 export class ScenariosController {
   constructor(private readonly scenariosService: ScenariosService) {}
 

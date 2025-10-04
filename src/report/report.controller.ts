@@ -1,8 +1,11 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
-import { ApiTags, ApiOperation } from '@nestjs/swagger';
+import { Controller, Get, Post, Body, Param, UseGuards } from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @ApiTags('report')
 @Controller('report')
+@UseGuards(JwtAuthGuard)
+@ApiBearerAuth()
 export class ReportController {
   @Get()
   @ApiOperation({ summary: 'Get all reports' })

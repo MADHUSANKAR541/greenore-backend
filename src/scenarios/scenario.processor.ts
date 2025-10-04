@@ -1,5 +1,5 @@
 import { Process, Processor } from '@nestjs/bull';
-import { Job } from 'bull';
+import type { Job } from 'bull';
 
 @Processor('scenario-processing')
 export class ScenarioProcessor {
