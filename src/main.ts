@@ -7,9 +7,22 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   // Enable CORS
+  const corsOrigins = (process.env.CORS_ORIGIN || 'https://greenore-frontend.vercel.app')
+    .split(',')
+    .map((o) => o.trim().replace(/\/$/, ''));
+
   app.enableCors({
-    origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
+    origin: (origin, callback) => {
+      // Allow non-browser requests (no Origin) and any configured origins
+      const normalized = origin ? origin.replace(/\/$/, '') : undefined;
+      if (!normalized || corsOrigins.includes(normalized)) {
+        return callback(null, true);
+      }
+      return callback(new Error('Not allowed by CORS'));
+    },
     credentials: true,
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
   });
 
   // Global validation pipe
