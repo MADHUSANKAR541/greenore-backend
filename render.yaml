@@ -13,10 +13,12 @@ services:
         sync: false
       - key: JWT_SECRET
         sync: false
+      - key: DATABASE_URL
+        value: "postgresql://postgres.gbpgldqqwupcdqlhzffg:kPPVq$/Vww9.Jgm@aws-1-ap-southeast-1.pooler.supabase.com:6543/postgres"
       - key: DB_HOST
         sync: false
       - key: DB_PORT
-        value: 3306
+        value: 5432
       - key: DB_USERNAME
         sync: false
       - key: DB_PASSWORD
