@@ -12,6 +12,7 @@ import { CalculateModule } from './calculate/calculate.module';
 import { OptimizeModule } from './optimize/optimize.module';
 import { ReportModule } from './report/report.module';
 import { FactorsModule } from './factors/factors.module';
+import { MLModule } from './ml/ml.module';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { FactorsModule } from './factors/factors.module';
     OptimizeModule,
     ReportModule,
     FactorsModule,
+    MLModule,
   ],
   controllers: [AppController],
   providers: [AppService],

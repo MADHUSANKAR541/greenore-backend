@@ -1,0 +1,34 @@
+services:
+  - type: web
+    name: greenore-backend
+    rootDir: greenore-backend
+    runtime: docker
+    plan: starter
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 8080
+      - key: CORS_ORIGIN
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        value: 3306
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_DATABASE
+        sync: false
+      - key: REDIS_HOST
+        sync: false
+      - key: REDIS_PORT
+        value: 6379
+      - key: PYTHON_PATH
+        value: /usr/bin/python3
+    healthCheckPath: /docs
+    autoDeploy: true
+
