@@ -7,7 +7,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   // Enable CORS
-  const corsOrigins = (process.env.CORS_ORIGIN || 'https://greenore-frontend.vercel.app')
+  const corsOrigins = ('https://greenore-frontend.vercel.app')
     .split(',')
     .map((o) => o.trim().replace(/\/$/, ''));
 
